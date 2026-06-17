@@ -19,20 +19,28 @@
 ## Day 3:Stream + Lambda ✅
 - [[Stream API]] —— 声明式处理集合(filter/map/collect)
 - [[惰性求值]] —— 中间操作是图纸,终端操作才启动(面试核心)
-- [[Lambda 与方法引用]] —— `Doc::title` 是 `d -> d.title()` 的语法糖
+- [[Lambda 与方法引用]] —— \`Doc::title\` 是 \`d -> d.title()\` 的语法糖
 - [[Collectors]] —— toList / groupingBy / counting / joining
 
-## Day 4:异常 + try-with-resources + 日志(学习中)
-- 预计:[[Java 异常体系]]、[[try-with-resources]]、[[SLF4J 日志]]
+## Day 4:异常 + try-with-resources + 日志 ✅
+- [[Java 异常体系]] —— checked vs unchecked / Error vs Exception
+- [[try-with-resources]] —— AutoCloseable 自动关流
+- [[SLF4J 日志]] —— 5 个级别,生产 INFO,改配置切级别/目标
 
-## Day 5-7(待学)
-- Day5:[[HttpClient]]、[[Jackson]]
-- Day6:CLI 工具整合 + [[JUnit5]]
-- Day7:重构 + 复盘
+## Day 5:HttpClient + Jackson ✅
+- [[HttpClient]] —— send() 不查状态码,要自己处理
+- [[Jackson]] —— readTree(树) vs readValue(转对象)
+- [[踩坑-HttpResponse 不能 try-with-resources]] —— javap 反编译求证,JDK 21 不可用
+
+## Day 6(周末):整合 + 单测(待学)
+- 预计:[[JUnit5]]
+
+## Day 7(周末):重构 + 复盘
+- 补全双链,巩固知识网络
 
 ## 本周里程碑
 - [ ] CLI 工具:读配置 → 调 API → Jackson 解析 → 打印结构化结果
-- [ ] `mvn test` 全绿
+- [ ] \`mvn test\` 全绿
 
 ## 导航
 - 上位:[[00-Map/总图谱]](待建)
