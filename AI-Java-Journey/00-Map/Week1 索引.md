@@ -32,15 +32,21 @@
 - [[Jackson]] —— readTree(树) vs readValue(转对象)
 - [[踩坑-HttpResponse 不能 try-with-resources]] —— javap 反编译求证,JDK 21 不可用
 
-## Day 6(周末):整合 + 单测(待学)
-- 预计:[[JUnit5]]
+## Day 6(周末):整合 + 单测 ✅
+- [[JUnit5]] —— @Test + 三大断言,mvn test 全绿
+- [[picocli]] —— 注解驱动的 CLI 解析,--help / 必填 / 退出码
+- [[WeatherService 设计模式]] —— I/O 与业务分离,Service 单测可达
 
-## Day 7(周末):重构 + 复盘
-- 补全双链,巩固知识网络
+## Day 7(周末):重构 + 复盘(待学)
+- 用 [[record]] 重写 Day 1-5 数据类
+- 把 6 天 21 个知识点连成网
+- [[00-Map/总图谱]] 雏形
+- Week 1 验收清单打勾
 
 ## 本周里程碑
-- [ ] CLI 工具:读配置 → 调 API → Jackson 解析 → 打印结构化结果
-- [ ] \`mvn test\` 全绿
+- [x] CLI 工具:读配置 → 调 API → Jackson 解析 → 打印结构化结果
+- [x] `mvn test` 全绿
+- [x] `java -jar target/java-ai-journey-1.0.jar --city 上海` 一行跑通
 
 ## 导航
 - 上位:[[00-Map/总图谱]](待建)
