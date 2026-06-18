@@ -10,8 +10,13 @@
 - 自动生成:
   - **全参构造器**(canonical constructor)
   - **访问器** `name()` / `age()` —— ⚠️ 注意是 `name()`,**不是** `getName()`(和传统 JavaBean 的区别)
-  - `equals()` / `hashCode()`(按字段值比较)
+  - `equals()` / `hashCode()`(**按所有字段值**比,天然满足 [[equals 与 hashCode]] 铁律)
   - `toString()`
+
+## 为什么"自动 equals/hashCode"是杀手锏
+传统写数据类最容易踩的坑就是**只重写 equals 不重写 hashCode** → Set/Map 去重失败。
+record 编译器按字段生成 equals+hashCode,**保证"equals 相等 ⇒ hashCode 一定相等"**,直接把这条铁律变成"免费"。所以放自定义数据去重时,record 几乎不会犯错。
+
 - 字段是 **final、不可变**:适合表达"值对象 / DTO / 一次性数据载体"。
 
 ## Java 里怎么落地
@@ -31,3 +36,4 @@ p.name();  // "Ada"  —— 访问器没有 get 前缀
 ## 关联
 - 对照:[[var 与静态类型]]
 - 上位:[[Java vs 旧语言]]
+- 铁律:[[equals 与 hashCode]](自动按字段生成,天然满足去重铁律)

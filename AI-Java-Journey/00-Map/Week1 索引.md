@@ -37,11 +37,31 @@
 - [[picocli]] —— 注解驱动的 CLI 解析,--help / 必填 / 退出码
 - [[WeatherService 设计模式]] —— I/O 与业务分离,Service 单测可达
 
-## Day 7(周末):重构 + 复盘(待学)
-- 用 [[record]] 重写 Day 1-5 数据类
-- 把 6 天 21 个知识点连成网
-- [[00-Map/总图谱]] 雏形
-- Week 1 验收清单打勾
+## Day 7(周末):重构 + 复盘 ✅
+- 21 知识点双链巡检:9 处断链全补(详见 [[record]] / [[Java 异常体系]] / [[HttpClient]] / [[Jackson]] / [[JUnit5]] / [[WeatherService 设计模式]] 等)
+- 新建 [[00-Map/总图谱]] 雏形:12 周转型地图
+- 新建 [[踩坑-HttpClient 状态码漏判]] —— send() 不会自动检查状态码,必须自己判
+- 5 道自测平均 68%:概念到位、工程深度还要补
+- 暴露真问题:try-with-resources 不熟 → Week 2 Day 1 补课
+
+## Week 1 复盘(100-200 字)
+
+**最大收获**:
+- Java 数据载体默认 record(自动 equals/hashCode,省掉"只重写一个"坑)
+- Stream + 惰性求值是后续 RAG/Agent 流式思维基础
+- **I/O 与业务分离**是 Week 2 Spring 三层架构的前置
+
+**踩过最深的坑**:
+- HttpClient.send() **不查状态码**(Week 3 接 LLM 必再踩)
+- Windows 默认 GBK 编码,中文全乱码(pom.xml 加 UTF-8 解决)
+- picocli 没打进 jar(`NoClassDefFoundError`,要 shade 插件)
+
+**没掌握的**:
+- try-with-resources 对"非 I/O 资源"不熟
+- record vs Lombok 区别 8 股深度不够
+- 状态码漏判的回归测试难写(必学 Mockito)
+
+**Week 2 重点**:`@SpringBootApplication` + 三层架构(Controller/Service/Mapper) + 5 个 8 股点(Bean 生命周期、循环依赖、事务传播、异常体系、配置加载)。
 
 ## 本周里程碑
 - [x] CLI 工具:读配置 → 调 API → Jackson 解析 → 打印结构化结果
@@ -49,5 +69,5 @@
 - [x] `java -jar target/java-ai-journey-1.0.jar --city 上海` 一行跑通
 
 ## 导航
-- 上位:[[00-Map/总图谱]](待建)
+- 上位:[[00-Map/总图谱]]
 - 下一周:[[Week2 索引]](待建)

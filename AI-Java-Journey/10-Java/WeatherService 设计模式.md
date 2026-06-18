@@ -71,3 +71,4 @@ public Weather fetch(String city) {
 - CLI 入口:[[picocli]]
 - 数据载体:[[record]]
 - 静态检查:[[var 与静态类型]]
+- 异常策略:[[Java 异常体系]](Service 抛异常、上层决定怎么应对)

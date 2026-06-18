@@ -36,5 +36,7 @@
 
 ## 关联
 - 踩坑:[[踩坑-HttpResponse 不能 try-with-resources]]
+- 关流写法:[[try-with-resources]](同步 String 响应不需要,流式响应要)
 - 配合:[[Jackson]] 解析响应
+- 异常来源:[[Java 异常体系]](send() 抛 IOException/InterruptedException)
 - 调试:[[SLF4J 日志]] 记请求/响应

@@ -41,5 +41,6 @@ Day 6 `WeatherServiceTest`:3 个测试覆盖"输入校验"边界(空字符串 / 
 - "为什么测试方法不能有依赖顺序?" → 测试必须独立,否则前一个失败后面全错。
 
 ## 关联
+- 工程:[[Maven 工程结构]](test scope 是 Maven 关键概念)
 - 应用:[[WeatherService 设计模式]](业务层独立可单测)
 - Week 8 会升级:[[Java 集合框架]]/[[HttpClient]]/[[Jackson]] 用 Mockito 模拟

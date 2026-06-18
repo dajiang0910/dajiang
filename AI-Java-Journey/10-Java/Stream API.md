@@ -53,4 +53,5 @@ docs.stream().collect(Collectors.groupingBy(Doc::category, Collectors.counting()
 ## 关联
 - 配合:[[Lambda 与方法引用]]、[[Collectors]]
 - 上位:[[Java 集合框架]]
+- 机制:[[惰性求值]](中间操作为什么"不立刻执行")
 - 应用:几乎所有现代 Java 代码(含 Spring AI)

@@ -25,7 +25,7 @@
 - **try-catch**:捕获并处理(局部兜底)
 - **throws**:把异常抛给上层(不处理,声明责任)
 - **try-with-resources**:自动关流(见 [[try-with-resources]])
-- **自定义业务异常**:把底层异常包一层(承载上下文,统一处理)—— Day4 用了 `DataLoadException`
+- **自定义业务异常**:把底层异常包一层(承载上下文,统一处理)—— Day4 用了 `DataLoadException`,常搭配 [[record]] 装上下文
 
 ## 一句话记忆
 > checked = 外部世界的事,不处理就编译不过;unchecked = 你代码本身写错了。
@@ -37,4 +37,5 @@
 ## 关联
 - 写法:[[try-with-resources]]
 - 调试:[[SLF4J 日志]]
+- 数据载体:[[record]](自定义业务异常常用 record 装上下文)
 - 实战:[[HttpClient]]、Day5 实战
