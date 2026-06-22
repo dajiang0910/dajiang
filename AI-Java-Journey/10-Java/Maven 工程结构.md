@@ -28,3 +28,4 @@ Day1 的 `pom.xml` 设 `maven.compiler.release=21`、加 `exec-maven-plugin` 以
 - 上位:[[JDK-JRE-JVM]]
 - 踩坑:[[踩坑-PowerShell 吞 -D 参数]]
 - 测试:[[JUnit5]](`mvn test` 跑的测试框架)
+- 进阶:[[Spring Boot 3 起手]](Spring Boot 工程改用 `spring-boot-starter-parent` 统一管依赖版本)
