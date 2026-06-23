@@ -21,7 +21,14 @@
 - [[ConcurrentHashMap]] —— 线程安全 HashMap,CAS + synchronized 锁单个桶
 - 自测加权 **94 分**(Q1=90 Q2=100 Q3=95 Q4=95 Q5=85),Day1 的 84 → Day2 的 94
 - Q5 纠偏:HashMap 并发 put 丢数据 + JDK7 死循环(头插法链表成环),答得不够具体,已补充
-## Day 3:REST CRUD + Bean Validation + 统一响应体(待学)
+## Day 3:REST CRUD + Bean Validation + 统一响应体 ✅
+- [[Bean Validation]] —— @Valid / @NotBlank / @Size,校验失败抛 MethodArgumentNotValidException
+- [[统一响应体（ApiResponse）]] —— code + message + data 泛型包装,前端统一拦截
+- [[全局异常处理]] —— @RestControllerAdvice + @ExceptionHandler,拦截异常返回统一格式
+- 更新:[[DTO 与 Entity 之分]]（补 Day3 实战）、[[@RestController]]（补 @RequestBody 详解）
+- 代码：`NoteController` 完整 CRUD、`NoteService` 增删改查、`GlobalExceptionHandler`、`ApiResponse`
+- 踩坑：Spring Boot 3.x 需单独引入 `spring-boot-starter-validation`（2.x 内置）
+- 自测加权 **98 分**（Q1=90 Q2=100 Q3=100 Q4=100 Q5=100），Day2 的 94 → Day3 的 98
 ## Day 4:全局异常处理 + 请求日志 + application.yml 多环境(待学)
 ## Day 5:MyBatis-Plus + H2/MySQL + 分页(待学)
 ## Day 6(周末):整合 + 单测 + Swagger(待学)

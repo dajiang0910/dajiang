@@ -8,9 +8,12 @@
 ## 核心要点
 - 入口:`ObjectMapper`(单例复用,创建它有开销)
 - 两种读法:
-  | 方法 | 返回 | 适合场景 |
-  | `readTree(json)` | `JsonNode`(通用树) | 结构不确定、字段可能缺失 |
-  | `readValue(json, XxxRecord.class)` | 直接转对象 | 结构已知、要拿到 record/POJO |
+
+| 方法                                 | 返回              | 适合场景                  |
+| ---------------------------------- | --------------- | --------------------- |
+| `readTree(json)`                   | `JsonNode`(通用树) | 结构不确定、字段可能缺失          |
+| `readValue(json, XxxRecord.class)` | 直接转对象           | 结构已知、要拿到 record/POJO  |
+
 - 配套取值:`node.get("字段").asDouble() / .asInt() / .asText()`,字段缺失返回 `0` 或 `null`,**不抛异常**
 
 ## Maven 依赖

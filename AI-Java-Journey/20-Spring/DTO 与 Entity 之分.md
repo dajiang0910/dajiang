@@ -46,14 +46,51 @@ public NoteResponse toResponse(Note note) {
 | Entity(数据库实体) | `class` | ORM 框架(JPA/MyBatis)要求可变 + 无参构造 |
 | 有复杂行为的领域对象 | `class` | 需要 setter、业务方法 |
 
+## Day 3 实战：三种 DTO
+
+```java
+// 1. 创建请求 DTO（前端 → 后端）
+public record CreateNoteRequest(
+    @NotBlank(message = "标题不能为空")
+    @Size(min = 1, max = 100, message = "标题长度 1-100 字符")
+    String title,
+    @Size(max = 10000, message = "内容最多 10000 字符")
+    String content
+) {}
+
+// 2. 更新请求 DTO（和创建类似，也可独立定义）
+public record UpdateNoteRequest(
+    @NotBlank(message = "标题不能为空")
+    @Size(min = 1, max = 100, message = "标题长度 1-100 字符")
+    String title,
+    @Size(max = 10000, message = "内容最多 10000 字符")
+    String content
+) {}
+
+// 3. 响应 DTO（后端 → 前端）
+public record NoteResponse(Long id, String title, String content, LocalDateTime createdAt) {
+    // 静态工厂方法：Entity → DTO
+    public static NoteResponse from(Note note) {
+        return new NoteResponse(note.getId(), note.getTitle(), note.getContent(), note.getCreatedAt());
+    }
+}
+```
+
+**静态工厂方法 `from()` 的作用**：
+- 封装 Entity → DTO 的转换逻辑
+- Controller 调用 `NoteResponse.from(note)` 而非手动 new
+- 防止敏感字段泄露（只暴露 DTO 定义的字段）
+
 ## 面试怎么问
 
 - "Entity 和 DTO 区别?" → Entity 代表数据库记录,DTO 代表 API 数据结构;不该混用。
 - "DTO 用什么写?" → `record`(Java 16+),不可变、简洁、天然适合数据传输。
 - "为什么不直接返 Entity?" → 会暴露内部字段、耦合数据库结构、无法精确控制响应内容。
+- "Entity → DTO 怎么转换?" → 静态工厂方法 `NoteResponse.from(note)`,封装转换逻辑。
 
 ## 关联
 
 - DTO 载体:[[record]]
+- 校验注解:[[Bean Validation]]（@NotBlank / @Size 放在 DTO 上）
 - 分层位置:DTO 在 Controller 层收发;Entity 在 Repository 层存取
-- 实战:Day3 引入 `NoteResponse` record 做 DTO
+- 响应包装:[[统一响应体（ApiResponse）]] 包裹 NoteResponse 返回
