@@ -44,3 +44,5 @@ public class AppConfig {
 - 上位思想:[[Spring IoC 容器]]
 - 工程入口:[[Spring Boot 3 起手]]
 - 应用:[[@RestController]]
+- 深入对比:[[构造器注入 vs 字段注入]](面试高频)
+- 面向接口:[[面向接口编程]](DI 的真正威力是可替换性)

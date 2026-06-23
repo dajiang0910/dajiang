@@ -9,7 +9,13 @@
 - **拆解**:`@RestController` = `@Controller`(我是 Web 组件,也是个 Bean)+ `@ResponseBody`(返回值进响应体)。
 - **@ResponseBody 的作用**:返回值交给 `HttpMessageConverter`(底层 Jackson)序列化成 JSON,直接写响应体。
 - **没有 @ResponseBody 会怎样(Day1 Q2 纠偏)**:纯 `@Controller` 时,返回值被当成**视图名(view name)**交给 `ViewResolver` 找页面模板 → 找不到模板 → Whitelabel Error Page 报错。**所以现象「报错」对,但原因是「返回值被当视图名解析」,不是「方法没有返回值」。**
-- **常用配套注解**:`@GetMapping/@PostMapping`(映射 HTTP 方法+路径)、`@RequestParam`(查询参数)、`@PathVariable`(路径变量)、`@RequestBody`(请求体转对象)。
+- **常用配套注解**:
+  - `@RequestMapping("/api/notes")`:类级公共前缀,方法上的路径在它后面拼。
+  - `@GetMapping("/{id}")`:映射 GET 请求;`{id}` 是路径占位符。
+  - `@PostMapping`/`@PutMapping`/`@DeleteMapping`:映射 POST/PUT/DELETE。
+  - `@PathVariable Long id`:把 URL 里的 `{id}` 抽出来、自动转类型。
+  - `@RequestParam`:查询参数(`?name=xxx`)。
+  - `@RequestBody`:请求体 JSON 自动反序列化成 Java 对象。
 
 ## Java 里怎么落地
 本项目:

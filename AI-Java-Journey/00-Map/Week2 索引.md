@@ -11,7 +11,16 @@
 - 还债:[[try-with-resources]] 补完 —— Suppressed 异常 + 实战 3 例 + 纠正 HttpResponse 错误
 - 自测盲区:`@ResponseBody` 的作用机制(Q2,已纠偏入 [[@RestController]])
 
-## Day 2:三层架构 + 内存版 Repository(待学)
+## Day 2:三层架构 + 内存版 Repository ✅
+- [[三层架构(Controller-Service-Repository)]] —— Controller → Service → Repository,依赖只能从上往下
+- [[面向接口编程]] —— Service 依赖接口不依赖实现,Day5 换 MySQL 只换实现类
+- [[构造器注入 vs 字段注入]] —— final 不可变 + 快速失败 + 可测试 + 依赖显式(面试高频)
+-[[@Repository-@Service-@Controller 区别]] —— 底层都是 @Component,分四个是为语义化分层
+-[[@PostConstruct 与 Bean 生命周期]] —— 实例化 → 注入 → @PostConstruct → 就绪 → @PreDestroy
+- [[DTO 与 Entity 之分]] —— Entity 用 class(ORM 要求可变),DTO 用 record(不可变传输)
+- [[ConcurrentHashMap]] —— 线程安全 HashMap,CAS + synchronized 锁单个桶
+- 自测加权 **94 分**(Q1=90 Q2=100 Q3=95 Q4=95 Q5=85),Day1 的 84 → Day2 的 94
+- Q5 纠偏:HashMap 并发 put 丢数据 + JDK7 死循环(头插法链表成环),答得不够具体,已补充
 ## Day 3:REST CRUD + Bean Validation + 统一响应体(待学)
 ## Day 4:全局异常处理 + 请求日志 + application.yml 多环境(待学)
 ## Day 5:MyBatis-Plus + H2/MySQL + 分页(待学)
