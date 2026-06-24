@@ -29,7 +29,16 @@
 - 代码：`NoteController` 完整 CRUD、`NoteService` 增删改查、`GlobalExceptionHandler`、`ApiResponse`
 - 踩坑：Spring Boot 3.x 需单独引入 `spring-boot-starter-validation`（2.x 内置）
 - 自测加权 **98 分**（Q1=90 Q2=100 Q3=100 Q4=100 Q5=100），Day2 的 94 → Day3 的 98
-## Day 4:全局异常处理 + 请求日志 + application.yml 多环境(待学)
+## Day 4:Spring Data JPA + 数据库持久化 ✅
+- [[Spring Data JPA 与 JpaRepository]] —— 继承 JpaRepository 即拥有 CRUD，0 行实现代码
+- [[JPA 实体注解]] —— @Entity / @Table / @Id / @GeneratedValue / @Column + 无参构造
+- [[H2 内存数据库]] —— 免装 MySQL，H2 控制台直接看数据
+- [[application.properties 配置]] —— 数据源 + JPA + H2 控制台 + ddl-auto 选项
+- 更新:[[面向接口编程]]（补 Day 4 实战：JPA 替换内存实现，Service 零修改）
+- 代码：NoteRepository 从 30 行实现类 → 1 行接口（extends JpaRepository），Note 加 JPA 注解
+- 踩坑：Spring Boot 4.x 需单独引入 `spring-boot-h2console`（从 autoconfigure 拆出独立模块）
+- 自测加权 **90 分**（Q1=100 Q2=100 Q3=100 Q4=100 Q5=50），Day3 的 98 → Day4 的 90
+- Q5 纠偏：JPA 无参构造函数与反射机制（Hibernate 从数据库加载数据 → 反射创建空对象 → 逐字段填充）
 ## Day 5:MyBatis-Plus + H2/MySQL + 分页(待学)
 ## Day 6(周末):整合 + 单测 + Swagger(待学)
 ## Day 7(周末):重构 + 复盘 + 双链(待学)
