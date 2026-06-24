@@ -97,11 +97,25 @@ Day 4 的改动：
 4. 删除 `InMemoryNoteRepository.java`
 5. `NoteService` **零修改**
 
+## Day 5：JPA vs MyBatis-Plus 对比
+
+| 维度 | JPA | MyBatis-Plus |
+|---|---|---|
+| 思路 | 面向对象，自动生成 SQL | 面向 SQL，手写或半自动 |
+| 基础接口 | `JpaRepository` | `BaseMapper` |
+| 自定义查询 | 方法名约定 `findByXxx` | `@Select` 注解 |
+| 复杂 JOIN | 弱（JPQL 不直观） | **强**（原生 SQL） |
+| 生态 | 国际主流 | 国内主流 |
+| 适合 | 单表 CRUD、DDD | 复杂查询、SQL 调优 |
+
+两者可以共存于同一个项目，共享 DataSource。详见 [[MyBatis-Plus 核心]]。
+
 ## 面试怎么问
 
 - "JpaRepository 提供了哪些方法？" → findAll, findById, save, deleteById, count, existsById
 - "save() 什么时候 INSERT 什么时候 UPDATE？" → id 为 null INSERT，非 null UPDATE
 - "Spring Data JPA 怎么自定义查询？" → 方法名约定（findBy + 字段名）
+- "JPA 和 MyBatis-Plus 怎么选？" → 单表 CRUD 选 JPA，多表 JOIN 选 MP
 
 ## 关联
 
@@ -109,4 +123,5 @@ Day 4 的改动：
 - 数据库：[[H2 内存数据库]]
 - 配置：[[application.properties 配置]]
 - 思想：[[面向接口编程]]
-- 对比：[[MyBatis-Plus]]（Day 5 学习）
+- 对比：[[MyBatis-Plus 核心]]
+- 分页：[[分页查询（JPA vs MyBatis-Plus）]]

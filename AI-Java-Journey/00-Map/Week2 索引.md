@@ -39,7 +39,14 @@
 - 踩坑：Spring Boot 4.x 需单独引入 `spring-boot-h2console`（从 autoconfigure 拆出独立模块）
 - 自测加权 **90 分**（Q1=100 Q2=100 Q3=100 Q4=100 Q5=50），Day3 的 98 → Day4 的 90
 - Q5 纠偏：JPA 无参构造函数与反射机制（Hibernate 从数据库加载数据 → 反射创建空对象 → 逐字段填充）
-## Day 5:MyBatis-Plus + H2/MySQL + 分页(待学)
+## Day 5:MyBatis-Plus + 分页查询 ✅
+- [[MyBatis-Plus 核心]] —— BaseMapper 继承即 CRUD，@TableName/@TableId/@TableField 注解
+- [[分页查询（JPA vs MyBatis-Plus）]] —— JPA Pageable + Page`<`T`>` vs MP Page + IPage`<`T`>`，页码起点不同
+- 更新: [[Spring Data JPA 与 JpaRepository]]（补 JPA vs MP 对比表）
+- 代码：NoteMapper（extends BaseMapper）、MyBatisPlusConfig（分页拦截器 + SqlSessionFactory）、Controller 双端点对比
+- 踩坑：① MP 3.5.9 PaginationInnerInterceptor 移到 mybatis-plus-jsqlparser 模块 ② JPA+MP 共存需手动配置 SqlSessionFactory
+- 自测加权 **90 分**（Q1=90 Q2=100 Q3=100 Q4=100 Q5=60），Day4 的 90 → Day5 的 90
+- Q5 纠偏：选 MP 理由不能只说"JPA 繁琐"，要讲 SQL 控制力 + 性能调优 + 可维护性
 ## Day 6(周末):整合 + 单测 + Swagger(待学)
 ## Day 7(周末):重构 + 复盘 + 双链(待学)
 
