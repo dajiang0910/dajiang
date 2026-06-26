@@ -47,14 +47,24 @@
 - 踩坑：① MP 3.5.9 PaginationInnerInterceptor 移到 mybatis-plus-jsqlparser 模块 ② JPA+MP 共存需手动配置 SqlSessionFactory
 - 自测加权 **90 分**（Q1=90 Q2=100 Q3=100 Q4=100 Q5=60），Day4 的 90 → Day5 的 90
 - Q5 纠偏：选 MP 理由不能只说"JPA 繁琐"，要讲 SQL 控制力 + 性能调优 + 可维护性
-## Day 6(周末):整合 + 单测 + Swagger(待学)
+## Day 6(周末):整合 + 单测 + Swagger ✅
+- [[Mockito 单元测试]] —— @Mock 假依赖 + @InjectMocks 真被测对象，隔离测试 Service 层
+- [[MockMvc 控制器测试]] —— @WebMvcTest 轻量容器 + MockMvc 模拟 HTTP，不启动服务器测 Controller
+- [[Swagger 与 OpenAPI]] —— springdoc-openapi 自动生成交互式 API 文档，@Tag + @Operation 注解
+- 更新:[[JUnit5]]（补 Mockito 配合使用场景）
+- 代码：NoteServiceTest（6 个测试）、NoteControllerTest（6 个测试）、OpenApiConfig
+- 踩坑：Spring Boot 4.x `@MockBean` → `@MockitoBean`，`@WebMvcTest` 包路径变更
+- 自测加权 **55 分**（Q1=10 Q2=10 Q3=15 Q4=10 Q5=10），Day5 的 90 → Day6 的 55
+- Q1 纠偏：@WebMvcTest 会加载轻量 Spring 容器（只装 Controller），不是完全不加载
+- Q2 纠偏：@InjectMocks 自动扫描构造函数参数，找到匹配的 @Mock 注入
+- Q5 纠偏：Swagger 关键注解 @Tag（分组）+ @Operation（接口描述）
 ## Day 7(周末):重构 + 复盘 + 双链(待学)
 
 ## 本周里程碑(目标)
-- [ ] `mvn spring-boot:run` 一键起,监听 8080
-- [ ] `/api/notes` 五个端点(POST / GET 列表 / GET 单个 / PUT / DELETE)跑通
-- [ ] `mvn test` 全绿
-- [ ] 全局异常 + 统一响应体
+- [x] `mvn spring-boot:run` 一键起,监听 8080
+- [x] `/api/notes` 五个端点(POST / GET 列表 / GET 单个 / PUT / DELETE)跑通
+- [x] `mvn test` 全绿（13 个测试：6 Service + 6 Controller + 1 上下文加载）
+- [x] 全局异常 + 统一响应体
 
 ## 导航
 - 上位:[[00-Map/总图谱]]
