@@ -58,7 +58,18 @@
 - Q1 纠偏：@WebMvcTest 会加载轻量 Spring 容器（只装 Controller），不是完全不加载
 - Q2 纠偏：@InjectMocks 自动扫描构造函数参数，找到匹配的 @Mock 注入
 - Q5 纠偏：Swagger 关键注解 @Tag（分组）+ @Operation（接口描述）
-## Day 7(周末):重构 + 复盘 + 双链(待学)
+## Day 7(周末):重构 + 复盘 + 双链 ✅
+- [[全局异常处理]] —— 重构：RuntimeException → BusinessException（携带 HttpStatus）
+- [[Java 异常体系]] —— 自定义业务异常继承 RuntimeException，精确区分业务异常 vs 代码 bug
+- [[MOC 与双链]] —— Obsidian 知识管理方法论：MOC 枢纽笔记 + 双向链接构建知识网络
+- 创建：[[Week2 MOC]] —— MOC 内容地图，用双链串联整周知识
+- 双链更新：全局异常处理、三层架构、DI、Bean Validation、ApiResponse、Mockito、MockMvc、JUnit5、Java 异常体系（9 篇笔记新增关联）
+- 代码：BusinessException.java、GlobalExceptionHandler 精确匹配、HelloController/GreetingService 清理
+- 自测加权 **86 分**（Q1=95 Q2=90 Q3=85 Q4=100 Q5=60），Day6 的 55 → Day7 的 86
+- Q2 纠偏：GlobalExceptionHandler 匹配顺序 — MethodArgumentNotValidException > BusinessException > Exception
+- Q3 纠偏：MOC 核心是"双链"——正向链接（MOC→笔记）+ 反向链接（笔记→MOC）
+- Q5 纠偏：Week 2 全景应包含三层架构 + 测试对应关系图，不能只列技术名词
+- 里程碑：Week 2 全部达成 ✅（52 篇笔记，知识网络成型）
 
 ## 本周里程碑(目标)
 - [x] `mvn spring-boot:run` 一键起,监听 8080

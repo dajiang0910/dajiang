@@ -126,3 +126,6 @@ class NoteControllerTest {
 - 前置:[[@RestController]]（被测对象）
 - 对比:[[@SpringBootTest]]（全量加载，集成测试用）
 - 代码: `notes-api/src/test/java/.../controller/NoteControllerTest.java`
+- 测哪一层：[[三层架构(Controller-Service-Repository)]] 的 Controller 层
+- DI 原理：[[依赖注入(DI)]] 的构造器注入 → `@MockitoBean` 替换容器中的 Bean
+- 校验测试：[[Bean Validation]] 的 `@NotBlank` → 用 JSON body 触发校验断言 400

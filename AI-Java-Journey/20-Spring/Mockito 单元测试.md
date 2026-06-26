@@ -127,3 +127,6 @@ verify(mock, never()).deleteById(2L);
 - 前置:[[JUnit5]]（JUnit 是测试框架，Mockito 是 Mock 框架，配合使用）
 - 应用:[[MockMvc 控制器测试]]（Controller 层用 MockMvc + @MockitoBean）
 - 代码: `notes-api/src/test/java/.../service/NoteServiceTest.java`
+- 测哪一层：[[三层架构(Controller-Service-Repository)]] 的 Service 层
+- DI 原理：[[依赖注入(DI)]] 的构造器注入 → `@InjectMocks` 模拟自动注入
+- 异常断言：[[全局异常处理]] 中的 `BusinessException` → `assertThrows(BusinessException.class, ...)`

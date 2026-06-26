@@ -39,3 +39,5 @@
 - 调试:[[SLF4J 日志]]
 - 数据载体:[[record]](自定义业务异常常用 record 装上下文)
 - 实战:[[HttpClient]]、Day5 实战
+- Spring 实战：[[全局异常处理]] 中的 `BusinessException`（继承 RuntimeException，携带 HttpStatus）
+- 测试断言：[[Mockito 单元测试]] 中的 `assertThrows(BusinessException.class, ...)`

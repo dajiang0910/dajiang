@@ -43,4 +43,5 @@ Day 6 `WeatherServiceTest`:3 个测试覆盖"输入校验"边界(空字符串 / 
 ## 关联
 - 工程:[[Maven 工程结构]](test scope 是 Maven 关键概念)
 - 应用:[[WeatherService 设计模式]](业务层独立可单测)
-- Week 8 会升级:[[Java 集合框架]]/[[HttpClient]]/[[Jackson]] 用 Mockito 模拟
+- 升级：[[Mockito 单元测试]]（@Mock + @InjectMocks 隔离依赖）· [[MockMvc 控制器测试]]（@WebMvcTest 测 Controller）
+- 异常断言：[[Java 异常体系]] → `assertThrows(BusinessException.class, ...)`

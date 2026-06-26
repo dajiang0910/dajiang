@@ -60,3 +60,5 @@ HTTP 请求
 - 分层注解:[[@Repository-@Service-@Controller 区别]]
 - 面向接口:[[面向接口编程]]
 - Web 入口:[[@RestController]]
+- 测试策略：[[Mockito 单元测试]]（测 Service 层）· [[MockMvc 控制器测试]]（测 Controller 层）
+- 异常处理：[[全局异常处理]]（@RestControllerAdvice 拦截各层异常）

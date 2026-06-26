@@ -106,3 +106,4 @@ axios.interceptors.response.use(
 - 搭配使用：[[Bean Validation]]、[[全局异常处理]]
 - 被包装：[[DTO 与 Entity 之分]] 的 NoteResponse
 - 返回位置：[[@RestController]] 的方法
+- 测试验证：[[MockMvc 控制器测试]] 中用 `jsonPath("$.code").value(200)` 断言响应格式

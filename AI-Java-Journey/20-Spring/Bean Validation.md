@@ -94,3 +94,4 @@ Day 3 用 `@Valid` 就够了。
 - 搭配使用：[[统一响应体（ApiResponse）]]、[[全局异常处理]]
 - 注解放在：[[DTO 与 Entity 之分]] 的 record 上
 - 触发位置：[[@RestController]] 的方法参数
+- 测试验证：[[MockMvc 控制器测试]] 中用 `.contentType("application/json")` + JSON body 触发校验
