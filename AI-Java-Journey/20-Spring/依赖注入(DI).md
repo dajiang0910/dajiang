@@ -53,3 +53,4 @@ public class AppConfig {
 - Day 4 进阶：[[多轮对话（消息历史）]] —— 新增 ChatMemory 注入（零配置，ChatMemoryAutoConfiguration 自动创建），构造器参数 +1
 - Day 5 进阶：[[超时重试与Token成本]] —— 无新增注入依赖，重试通过 `SpringAiRetryAutoConfiguration` 自动配置（又是零代码！），Token 用量通过 `ChatClientResponse` API 获取
 - Day 6 进阶：[[综合实战（智能笔记助手）]] —— 无新增注入依赖，`smartNote()` 复用同一个 ChatClient 实例执行 3 步调用链，Token 聚合依赖 Day 5 的 `ChatClientResponse` API
+- Week 4 进阶：[[BeanOutputConverter 结构化输出]] —— `StructuredExtractService` 同样用 `ChatClient.Builder` 构造器注入，`.entity(Class)` 扩展了 ChatClient 的取值方式

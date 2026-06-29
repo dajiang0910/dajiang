@@ -76,3 +76,4 @@ public class HelloController {
 - Day 4 多轮端点：`POST /api/chat/multi-turn`（[[多轮对话（消息历史）]]）—— 接收 `conversationId` + `message`，ChatMemory + Advisor 自动管理历史
 - Day 5 成本端点：`POST /api/chat/with-cost`（[[超时重试与Token成本]]）—— 复用 Day 1 ChatRequest，返回 `ChatCostResponse`（reply + TokenUsage）
 - Day 6 综合端点：`POST /api/chat/smart-note`（[[综合实战（智能笔记助手）]]）—— 输入原始内容，返回 `SmartNoteResponse`（title + summary + translation + TokenUsage），三步 AI 调用链编排
+- Week 4 结构化提取：`POST /api/extract/metadata`（[[BeanOutputConverter 结构化输出]]）—— 输入文本，返回 `NoteMetadata`（title/keywords/category/difficulty/summary），`.entity(Class)` 让 LLM 返回类型安全 Bean

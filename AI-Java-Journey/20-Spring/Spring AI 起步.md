@@ -139,3 +139,4 @@ public class ChatController {
 - 后续：[[多轮对话（消息历史）]]（Day 4 — ChatMemory + MessageChatMemoryAdvisor，让 LLM "记住"上下文）
 - 后续：[[超时重试与Token成本]]（Day 5 — 超时/重试/Token 成本，让 LLM 调用具备生产级可靠性）
 - 后续：[[综合实战（智能笔记助手）]]（Day 6 — Day 1-5 全部能力整合为多步 AI 调用链）
+- Week 4 进阶：[[BeanOutputConverter 结构化输出]]（Week 4 — `.entity(Class)` 让 LLM 返回类型安全的 Java Bean，ChatClient 的新取值方法）
