@@ -218,7 +218,7 @@ public ApiResponse<ChatCostResponse> chatWithCost(@Valid @RequestBody ChatReques
 
 **对策**：在 `chatWithCost()` 中加 Token 用量监控日志，超过阈值告警。
 
-## 端点全景图（Day 1→5）
+## 端点全景图（Day 1→6）
 
 ```
 Day 1: POST /api/chat              → String（同步，无记忆，无成本）
@@ -228,6 +228,7 @@ Day 2: POST /api/chat/translate    → String（system 角色）
 Day 3: GET  /api/chat/stream       → Flux<String>（流式 SSE）
 Day 4: POST /api/chat/multi-turn   → String（多轮，ChatMemory + Advisor）
 Day 5: POST /api/chat/with-cost    → ChatCostResponse（同步 + Token 成本 ✅）
+Day 6: POST /api/chat/smart-note   → SmartNoteResponse（多步调用链 + Token 聚合 🆕）
 ```
 
 ## 面试怎么问
@@ -247,3 +248,4 @@ Day 5: POST /api/chat/with-cost    → ChatCostResponse（同步 + Token 成本 
 - 历史管理：[[多轮对话（消息历史）]] —— ChatMemory 历史过长 → Token 暴涨的根源之一
 - 流式对比：[[SSE 流式对话]] —— 流式调用也可以获取 Token 用量（通过 `Flux<ChatClientResponse>`）
 - 生产进阶（W10）：Micrometer + Spring AI Observability → 自动采集 Token/延迟/调用链路
+- Day 6 实战：[[综合实战（智能笔记助手）]] —— Token 聚合实战：3 步调用链每步用 `.chatClientResponse()` 获取 Usage，三步累加得链路总成本

@@ -129,3 +129,4 @@ class NoteControllerTest {
 - 测哪一层：[[三层架构(Controller-Service-Repository)]] 的 Controller 层
 - DI 原理：[[依赖注入(DI)]] 的构造器注入 → `@MockitoBean` 替换容器中的 Bean
 - 校验测试：[[Bean Validation]] 的 `@NotBlank` → 用 JSON body 触发校验断言 400
+- Day 6 补齐：[[综合实战（智能笔记助手）]] —— 新增 `ChatControllerTest.java`，12 个测试覆盖全部 8 个 chat 端点，`@WebMvcTest` + `@MockitoBean` 模拟 ChatService，不依赖真实 API Key

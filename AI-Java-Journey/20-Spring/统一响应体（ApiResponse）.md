@@ -112,3 +112,4 @@ axios.interceptors.response.use(
 - Day 3 例外：[[SSE 流式对话]] 的 `GET /api/chat/stream` 不包装 ApiResponse，直接返回 `Flux<String>` —— 流式响应不适合统一响应体（SSE 格式要求连续事件流，包装会破坏逐 token 的效果）
 - Day 4 复用：[[多轮对话（消息历史）]] 的 `POST /api/chat/multi-turn` 复用 ApiResponse 包装 —— 同步调用场景，和 Day 1-2 的端点完全一致
 - Day 5 泛型复用：[[超时重试与Token成本]] 的 `POST /api/chat/with-cost` 返回 `ApiResponse<ChatCostResponse>` —— 泛型 T 自动适配新 DTO，无需改 ApiResponse 源码
+- Day 6 泛型复用：[[综合实战（智能笔记助手）]] 的 `POST /api/chat/smart-note` 返回 `ApiResponse<SmartNoteResponse>` —— Week 3 全部 8 个端点中有 7 个同步端点复用同一套 ApiResponse 包装，验证了统一响应体的设计价值

@@ -40,14 +40,21 @@
 - 自测 **100 分**（Q1=20 Q2=20 Q3=20 Q4=20 Q5=20）🎉
 - 关键认知：`.content()` 是快捷方式只拿文本，`.chatClientResponse()` 是完整路径能拿到 Token 用量 + 限流信息 + 模型名称。重试自动配置 `SpringAiRetryAutoConfiguration` 零代码生效。4xx 不重试（请求本身有问题），5xx/网络异常重试（瞬时故障）
 
+## Day 6：综合实战（智能笔记发布助手） ✅
+- [[综合实战（智能笔记助手）]] —— 多步 AI 调用链 + Token 成本聚合，Day 1-5 全部能力整合
+- 代码：`SmartNoteRequest.java`（content）、`SmartNoteResponse.java`（title + summary + translation + TokenUsage）、`ChatService.smartNote()`（3 步调用 + Token 累加）、`ChatController.smartNote()`（POST /api/chat/smart-note）、`ChatControllerTest.java`（12 个新测试覆盖全部 8 个 chat 端点）
+- 自测 **80 分**（Q1=20 Q2=20 Q3=20 Q4=20 Q5=0）
+- Q5 纠偏：面试时最弱的回答是「我调过 API，能返回结果」—— 缺少设计思考、工程化、量化。强回答要包含具体项目 + 设计决策 + 技术难点 + 解决方案
+- 关键认知：多步调用链每步用 `.chatClientResponse()` 获取 Usage，三步累加得链路总成本。三步互不依赖可并行化（CompletableFuture），串行版更易调试。`@WebMvcTest` + `@MockitoBean` 不加载真实 ChatClient，无需 API Key
+
 ## 本周里程碑（目标）
 - [x] `POST /api/chat` 同步端点跑通（Day 1 代码完成）
 - [x] System 角色 + PromptTemplate 端点跑通（Day 2 — 翻译/摘要/Slug 三个新端点）
 - [x] `GET /api/chat/stream` 流式端点（Day 3 — SSE 流式，mvn test 13/13 全绿）
 - [x] 多轮对话（消息历史）（Day 4 — ChatMemory + Advisor）
 - [x] 超时重试 + Token 成本（Day 5 — 三层防护）
-- [x] `mvn test` 全绿 13/13（Day 3-5 代码无回归）
-- [ ] Swagger UI 可测试 chat 端点
+- [x] `mvn test` 全绿 24/24（Day 6 新增 12 个 ChatController 测试）
+- [x] Swagger UI 可测试 chat 端点（Day 6 完成 ✅ — 8 个端点全部可测试）
 
 ## 导航
 - 上位：[[总图谱]]
