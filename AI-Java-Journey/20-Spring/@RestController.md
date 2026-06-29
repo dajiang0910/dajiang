@@ -78,3 +78,4 @@ public class HelloController {
 - Day 6 综合端点：`POST /api/chat/smart-note`（[[综合实战（智能笔记助手）]]）—— 输入原始内容，返回 `SmartNoteResponse`（title + summary + translation + TokenUsage），三步 AI 调用链编排
 - Week 4 结构化提取：`POST /api/extract/metadata`（[[BeanOutputConverter 结构化输出]]）—— 输入文本，返回 `NoteMetadata`（title/keywords/category/difficulty/summary），`.entity(Class)` 让 LLM 返回类型安全 Bean
 - Week 4 Day 2 增强提取：`POST /api/extract/metadata/v2`（[[Prompt 工程进阶（Few-shot + Schema 约束）]]）—— Few-shot 范例 + @JsonPropertyDescription + 后校验，五层防跑偏
+- Week 4 Day 3 文档解析：`POST /api/documents/parse` + `POST /api/documents/parse-and-extract`（[[Apache Tika 文档解析]]）—— 上传文件 → Tika 解析 → （可选）AI 提取，知识库接入层完整链路

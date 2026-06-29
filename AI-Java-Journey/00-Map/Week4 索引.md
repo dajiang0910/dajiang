@@ -15,10 +15,16 @@
 - ChatControllerTest 新增 2 个测试（v2 正常提取 + 后校验修正非法 category）
 - 关键认知：Few-shot 范例 > 纯文字描述（LLM 是模式补全器不是指令执行器）。@JsonPropertyDescription 写入 Schema 的 description 字段让 LLM 理解字段语义。五层防跑偏：required → description → Few-shot → System 约束 → 后校验
 
+## Day 3：Apache Tika 文档解析入门 ✅
+- [[Apache Tika 文档解析]] —— Tika 统一门面，一行代码解析 PDF/Word/Markdown 等 1000+ 格式
+- 代码：`DocumentParseService.java`（Tika 封装 + 完整链路）、`DocumentParseResponse.java`（解析结果 DTO）、`DocumentController.java`（POST /api/documents/parse + POST /api/documents/parse-and-extract）
+- DocumentControllerTest 新增 4 个测试（解析正常 + 空文件、提取正常 + 空文件）
+- 关键认知：Tika = 文档解析的 JDBC，自动检测格式（magic bytes）+ 路由解析器。**detect() 和 parseToString() 不能串联**（detect 消费 InputStream），正确做法是一次 parseToString(stream, metadata) 并在 metadata 里拿 Content-Type。完整链路：MultipartFile → Tika → 纯文本 → extractV2() → NoteMetadata
+
 ## 本周里程碑（目标）
 - [x] `BeanOutputConverter` 端点跑通，LLM 返回结构化 Bean（Day 1 ✅）
 - [x] Few-shot + @JsonPropertyDescription + 后校验五层防跑偏（Day 2 ✅）
-- [ ] Tika 能解析 PDF/Word/Markdown 三种格式
+- [x] Tika 能解析 PDF/Word/Markdown 三种格式（Day 3 ✅）
 - [ ] 上传文档 → 解析 → AI 提取结构化信息完整链路
 - [x] `mvn test` 全绿（28/28）✅
 - [ ] Swagger UI 可测试文档上传端点
