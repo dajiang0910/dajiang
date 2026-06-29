@@ -74,3 +74,4 @@ public class HelloController {
 - Day 2 新增端点：`POST /api/chat/translate`（[[System 角色与消息类型]]）、`POST /api/chat/summarize`（[[PromptTemplate 模板化提示词]]）、`POST /api/chat/slug`（两者结合），四个端点结构完全一致
 - Day 3 流式端点：`GET /api/chat/stream`（[[SSE 流式对话]]）—— 返回 `Flux<String>` + `produces = text/event-stream`，非 ApiResponse 包装
 - Day 4 多轮端点：`POST /api/chat/multi-turn`（[[多轮对话（消息历史）]]）—— 接收 `conversationId` + `message`，ChatMemory + Advisor 自动管理历史
+- Day 5 成本端点：`POST /api/chat/with-cost`（[[超时重试与Token成本]]）—— 复用 Day 1 ChatRequest，返回 `ChatCostResponse`（reply + TokenUsage）

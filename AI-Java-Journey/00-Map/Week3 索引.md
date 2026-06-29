@@ -34,12 +34,19 @@
 - 关键认知：Advisor 模式 = LLM 调用的 Filter/Interceptor，请求前注入历史 → 响应后保存本轮。conversationId 区分会话，同一 ID 共享记忆、不同 ID 互相隔离
 - ChatMemory 由 `ChatMemoryAutoConfiguration` 自动配置（classpath 有 spring-ai-autoconfigure-model-chat-memory 即创建 InMemory Bean），零配置直接注入
 
+## Day 5：超时重试 + Token 成本 ✅
+- [[超时重试与Token成本]] —— 三层防护：超时掐断（防线程耗尽）+ 指数退避重试（防瞬时故障）+ Token 监控（防成本异常）
+- 代码：`application.properties` 新增三块配置（超时/重试/观测）、`ChatCostResponse.java`（reply + TokenUsage）、`ChatService.chatWithCost()`（用 `.chatClientResponse()` 替代 `.content()` 获取 Usage）、`ChatController.chatWithCost()`（POST /api/chat/with-cost）
+- 自测 **100 分**（Q1=20 Q2=20 Q3=20 Q4=20 Q5=20）🎉
+- 关键认知：`.content()` 是快捷方式只拿文本，`.chatClientResponse()` 是完整路径能拿到 Token 用量 + 限流信息 + 模型名称。重试自动配置 `SpringAiRetryAutoConfiguration` 零代码生效。4xx 不重试（请求本身有问题），5xx/网络异常重试（瞬时故障）
+
 ## 本周里程碑（目标）
 - [x] `POST /api/chat` 同步端点跑通（Day 1 代码完成）
 - [x] System 角色 + PromptTemplate 端点跑通（Day 2 — 翻译/摘要/Slug 三个新端点）
 - [x] `GET /api/chat/stream` 流式端点（Day 3 — SSE 流式，mvn test 13/13 全绿）
 - [x] 多轮对话（消息历史）（Day 4 — ChatMemory + Advisor）
-- [x] `mvn test` 全绿 13/13（Day 3-4 代码无回归）
+- [x] 超时重试 + Token 成本（Day 5 — 三层防护）
+- [x] `mvn test` 全绿 13/13（Day 3-5 代码无回归）
 - [ ] Swagger UI 可测试 chat 端点
 
 ## 导航
