@@ -133,5 +133,6 @@ public class ChatController {
 - 请求体：[[DTO 与 Entity 之分]]（ChatRequest 用 record，不可变传输对象）
 - 响应体：[[统一响应体（ApiResponse）]]（chat 端点复用同一套 ApiResponse 包装）
 - 配置：[[application.properties 配置]]（新增 spring.ai.openai.* 配置段）
-- 后续：Day 2 [[PromptTemplate]]（system/user 角色 + 模板化）
+- 后续：[[System 角色与消息类型]]（Day 2 — system/user/assistant 三种角色）
+- 后续：[[PromptTemplate 模板化提示词]]（Day 2 — 模板化提示词，命名占位符）
 - 后续：Day 3 SSE 流式（`stream()` 替换 `call()`）

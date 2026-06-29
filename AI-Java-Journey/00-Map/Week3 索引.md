@@ -11,15 +11,21 @@
 - Q5 纠偏：Spring AI 2.0 模块拆分 — 模型实现 / 自动配置 / ChatClient 三模块独立 + starter 聚合
 - 关键认知：阿里百炼能用 OpenAI 模块是因为 `base-url` 指向百炼兼容端点
 
-## Day 2：PromptTemplate + System/User 角色（待开始）
-- PromptTemplate 模板化 System/User 消息
-- 待续...
+## Day 2：PromptTemplate + System/User 角色 ✅
+- [[System 角色与消息类型]] —— system/user/assistant 三种角色，`.system()` 约束 AI 行为
+- [[PromptTemplate 模板化提示词]] —— 命名占位符 `{name}` 替代字符串拼接，三步操作（创建→填充→渲染）
+- 代码：`TranslateRequest.java`、`SummarizeRequest.java`、`SlugRequest.java`（3 个新 DTO）
+- ChatService 新增：`translate()`（system 角色）、`summarize()`（PromptTemplate）、`generateSlug()`（两者结合）
+- ChatController 新增：`POST /api/chat/translate`、`POST /api/chat/summarize`、`POST /api/chat/slug`
+- 自测 **100 分**（Q1=20 Q2=20 Q3=20 Q4=20 Q5=20） 🎉
+- 关键认知：system 管"怎么答"（角色/格式），PromptTemplate 管"答什么"（参数化输入），两者互补不冲突
 
 ## 本周里程碑（目标）
 - [x] `POST /api/chat` 同步端点跑通（Day 1 代码完成）
+- [x] System 角色 + PromptTemplate 端点跑通（Day 2 — 翻译/摘要/Slug 三个新端点）
 - [ ] `GET /api/chat/stream` 流式端点
 - [ ] 多轮对话（消息历史）
-- [ ] `mvn test` 全绿（含 LLM 相关测试）
+- [x] `mvn test` 全绿 13/13（Day 2 代码无回归）
 - [ ] Swagger UI 可测试 chat 端点
 
 ## 导航

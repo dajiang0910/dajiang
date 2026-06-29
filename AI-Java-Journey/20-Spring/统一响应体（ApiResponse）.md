@@ -108,3 +108,4 @@ axios.interceptors.response.use(
 - 返回位置：[[@RestController]] 的方法
 - 测试验证：[[MockMvc 控制器测试]] 中用 `jsonPath("$.code").value(200)` 断言响应格式
 - 新端点复用：[[Spring AI 起步]] —— `POST /api/chat` 同样返回 `ApiResponse<String>`，一套响应体覆盖全部 API
+- Day 2 新增端点全部复用：`POST /api/chat/translate`、`POST /api/chat/summarize`、`POST /api/chat/slug`，无需新增响应体类

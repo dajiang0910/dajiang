@@ -95,3 +95,4 @@ public record NoteResponse(Long id, String title, String content, LocalDateTime 
 - 分层位置:DTO 在 Controller 层收发;Entity 在 Repository 层存取
 - 响应包装:[[统一响应体（ApiResponse）]] 包裹 NoteResponse 返回
 - 新用途：[[Spring AI 起步]] —— ChatRequest 同样是 record DTO，不改风格直接复用
+- Day 2 新增 DTO：`TranslateRequest`（text + targetLanguage）、`SummarizeRequest`（content + maxWords + @Min/@Max 校验）、`SlugRequest`（title），全部用 record，统一校验风格

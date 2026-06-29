@@ -71,3 +71,4 @@ public class HelloController {
 - 工程入口:[[Spring Boot 3 起手]]
 - 数据载体:[[record]](收发 JSON 常用 record 当 DTO)
 - 进阶：[[Spring AI 起步]] —— ChatController 同样遵循三层架构，注入 ChatService 处理 LLM 对话
+- Day 2 新增端点：`POST /api/chat/translate`（[[System 角色与消息类型]]）、`POST /api/chat/summarize`（[[PromptTemplate 模板化提示词]]）、`POST /api/chat/slug`（两者结合），四个端点结构完全一致
