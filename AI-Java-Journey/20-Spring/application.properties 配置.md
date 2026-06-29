@@ -107,3 +107,4 @@ spring.profiles.active=dev
 - 数据源：[[H2 内存数据库]]
 - ORM：[[Spring Data JPA 与 JpaRepository]] + [[JPA 实体注解]]
 - 进阶：Spring Profiles 多环境
+- 新增配置段：[[Spring AI 起步]] —— spring.ai.openai.* 配置阿里百炼 API Key、base-url、模型

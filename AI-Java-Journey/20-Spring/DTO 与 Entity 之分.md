@@ -94,3 +94,4 @@ public record NoteResponse(Long id, String title, String content, LocalDateTime 
 - 校验注解:[[Bean Validation]]（@NotBlank / @Size 放在 DTO 上）
 - 分层位置:DTO 在 Controller 层收发;Entity 在 Repository 层存取
 - 响应包装:[[统一响应体（ApiResponse）]] 包裹 NoteResponse 返回
+- 新用途：[[Spring AI 起步]] —— ChatRequest 同样是 record DTO，不改风格直接复用

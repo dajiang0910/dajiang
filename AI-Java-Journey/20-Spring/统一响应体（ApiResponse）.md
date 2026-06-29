@@ -107,3 +107,4 @@ axios.interceptors.response.use(
 - 被包装：[[DTO 与 Entity 之分]] 的 NoteResponse
 - 返回位置：[[@RestController]] 的方法
 - 测试验证：[[MockMvc 控制器测试]] 中用 `jsonPath("$.code").value(200)` 断言响应格式
+- 新端点复用：[[Spring AI 起步]] —— `POST /api/chat` 同样返回 `ApiResponse<String>`，一套响应体覆盖全部 API

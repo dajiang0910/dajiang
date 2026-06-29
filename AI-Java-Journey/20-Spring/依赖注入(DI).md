@@ -47,3 +47,4 @@ public class AppConfig {
 - 深入对比:[[构造器注入 vs 字段注入]](面试高频)
 - 面向接口:[[面向接口编程]](DI 的真正威力是可替换性)
 - 测试中的 DI：[[Mockito 单元测试]] 的 `@InjectMocks` 模拟构造器注入 · [[MockMvc 控制器测试]] 的 `@MockitoBean` 替换容器中的 Bean
+- LLM 依赖注入：[[Spring AI 起步]] —— `ChatClient.Builder` 构造器注入，和 JpaRepository 一模一样

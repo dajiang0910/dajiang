@@ -70,3 +70,4 @@ public class HelloController {
 - 注入:[[依赖注入(DI)]]
 - 工程入口:[[Spring Boot 3 起手]]
 - 数据载体:[[record]](收发 JSON 常用 record 当 DTO)
+- 进阶：[[Spring AI 起步]] —— ChatController 同样遵循三层架构，注入 ChatService 处理 LLM 对话
