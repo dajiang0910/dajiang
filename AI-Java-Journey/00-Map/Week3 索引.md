@@ -27,12 +27,19 @@
 - Q2 纠偏：SSE Content-Type 是 `text/event-stream`，不是 `application/octet-stream`（后者是文件下载二进制流）
 - 关键认知：同一个 ChatClient，`.call()→String→JSON` vs `.stream()→Flux<String>→SSE`，换一个调用方法改变整个通信模式
 
+## Day 4：多轮对话（消息历史 + ChatMemory + Advisor） ✅
+- [[多轮对话（消息历史）]] —— LLM 无状态 → ChatMemory 存历史 → MessageChatMemoryAdvisor 自动注入/提取
+- 代码：`ChatMultiTurnRequest.java`（conversationId + message）、`ChatService.chatMultiTurn()`（Advisor 配置）、`ChatController.chatMultiTurn()`（POST /api/chat/multi-turn）
+- 自测 **100 分**（Q1=20 Q2=20 Q3=20 Q4=20 Q5=20）🎉
+- 关键认知：Advisor 模式 = LLM 调用的 Filter/Interceptor，请求前注入历史 → 响应后保存本轮。conversationId 区分会话，同一 ID 共享记忆、不同 ID 互相隔离
+- ChatMemory 由 `ChatMemoryAutoConfiguration` 自动配置（classpath 有 spring-ai-autoconfigure-model-chat-memory 即创建 InMemory Bean），零配置直接注入
+
 ## 本周里程碑（目标）
 - [x] `POST /api/chat` 同步端点跑通（Day 1 代码完成）
 - [x] System 角色 + PromptTemplate 端点跑通（Day 2 — 翻译/摘要/Slug 三个新端点）
 - [x] `GET /api/chat/stream` 流式端点（Day 3 — SSE 流式，mvn test 13/13 全绿）
-- [ ] 多轮对话（消息历史）
-- [x] `mvn test` 全绿 13/13（Day 3 代码无回归）
+- [x] 多轮对话（消息历史）（Day 4 — ChatMemory + Advisor）
+- [x] `mvn test` 全绿 13/13（Day 3-4 代码无回归）
 - [ ] Swagger UI 可测试 chat 端点
 
 ## 导航

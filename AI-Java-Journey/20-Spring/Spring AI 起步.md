@@ -136,3 +136,4 @@ public class ChatController {
 - 后续：[[System 角色与消息类型]]（Day 2 — system/user/assistant 三种角色）
 - 后续：[[PromptTemplate 模板化提示词]]（Day 2 — 模板化提示词，命名占位符）
 - 后续：[[SSE 流式对话]]（Day 3 — `.stream()` 替换 `.call()`，`Flux<String>` + `text/event-stream`）
+- 后续：[[多轮对话（消息历史）]]（Day 4 — ChatMemory + MessageChatMemoryAdvisor，让 LLM "记住"上下文）

@@ -50,3 +50,4 @@ public class AppConfig {
 - LLM 依赖注入：[[Spring AI 起步]] —— `ChatClient.Builder` 构造器注入，和 JpaRepository 一模一样
 - Day 2 进阶：[[System 角色与消息类型]] · [[PromptTemplate 模板化提示词]] —— 同一个 ChatClient.Builder 支撑翻译、摘要、Slug 生成三个新方法
 - Day 3 进阶：[[SSE 流式对话]] —— 同一个 ChatClient.Builder 同时支撑 `.call()`（同步）和 `.stream()`（流式），注入方式不变
+- Day 4 进阶：[[多轮对话（消息历史）]] —— 新增 ChatMemory 注入（零配置，ChatMemoryAutoConfiguration 自动创建），构造器参数 +1
