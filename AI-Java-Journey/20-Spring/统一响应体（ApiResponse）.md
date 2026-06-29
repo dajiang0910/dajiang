@@ -109,3 +109,4 @@ axios.interceptors.response.use(
 - 测试验证：[[MockMvc 控制器测试]] 中用 `jsonPath("$.code").value(200)` 断言响应格式
 - 新端点复用：[[Spring AI 起步]] —— `POST /api/chat` 同样返回 `ApiResponse<String>`，一套响应体覆盖全部 API
 - Day 2 新增端点全部复用：`POST /api/chat/translate`、`POST /api/chat/summarize`、`POST /api/chat/slug`，无需新增响应体类
+- Day 3 例外：[[SSE 流式对话]] 的 `GET /api/chat/stream` 不包装 ApiResponse，直接返回 `Flux<String>` —— 流式响应不适合统一响应体（SSE 格式要求连续事件流，包装会破坏逐 token 的效果）

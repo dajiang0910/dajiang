@@ -20,12 +20,19 @@
 - 自测 **100 分**（Q1=20 Q2=20 Q3=20 Q4=20 Q5=20） 🎉
 - 关键认知：system 管"怎么答"（角色/格式），PromptTemplate 管"答什么"（参数化输入），两者互补不冲突
 
+## Day 3：SSE 流式对话（stream() + Flux） ✅
+- [[SSE 流式对话]] —— `.stream()` 替代 `.call()`，`Flux<String>` 异步非阻塞，`text/event-stream`
+- 代码：`ChatService.streamChat()`（.stream().content()）、`ChatController.streamChat()`（GET + produces）
+- 自测 **80 分**（Q1=20 Q2=0 Q3=20 Q4=20 Q5=20）
+- Q2 纠偏：SSE Content-Type 是 `text/event-stream`，不是 `application/octet-stream`（后者是文件下载二进制流）
+- 关键认知：同一个 ChatClient，`.call()→String→JSON` vs `.stream()→Flux<String>→SSE`，换一个调用方法改变整个通信模式
+
 ## 本周里程碑（目标）
 - [x] `POST /api/chat` 同步端点跑通（Day 1 代码完成）
 - [x] System 角色 + PromptTemplate 端点跑通（Day 2 — 翻译/摘要/Slug 三个新端点）
-- [ ] `GET /api/chat/stream` 流式端点
+- [x] `GET /api/chat/stream` 流式端点（Day 3 — SSE 流式，mvn test 13/13 全绿）
 - [ ] 多轮对话（消息历史）
-- [x] `mvn test` 全绿 13/13（Day 2 代码无回归）
+- [x] `mvn test` 全绿 13/13（Day 3 代码无回归）
 - [ ] Swagger UI 可测试 chat 端点
 
 ## 导航

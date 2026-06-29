@@ -135,4 +135,4 @@ public class ChatController {
 - 配置：[[application.properties 配置]]（新增 spring.ai.openai.* 配置段）
 - 后续：[[System 角色与消息类型]]（Day 2 — system/user/assistant 三种角色）
 - 后续：[[PromptTemplate 模板化提示词]]（Day 2 — 模板化提示词，命名占位符）
-- 后续：Day 3 SSE 流式（`stream()` 替换 `call()`）
+- 后续：[[SSE 流式对话]]（Day 3 — `.stream()` 替换 `.call()`，`Flux<String>` + `text/event-stream`）
