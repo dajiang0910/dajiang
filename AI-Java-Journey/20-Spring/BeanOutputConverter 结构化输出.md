@@ -183,5 +183,5 @@ curl -X POST http://localhost:8080/api/extract/metadata \
 - 前置：[[统一响应体（ApiResponse）]] —— `ApiResponse<NoteMetadata>` 泛型复用验证
 - 前置：[[@RestController]] —— 新增 `POST /api/extract/metadata` 端点
 - 前置：[[DTO 与 Entity 之分]] —— NoteMetadata 是输出 DTO，ExtractRequest 是输入 DTO
-- 配套：[[Prompt 工程进阶]] —— 少样本 + 约束输出 + 防幻觉，结构化输出的 Prompt 侧
+- 配套：[[Prompt 工程进阶（Few-shot + Schema 约束）]] —— Day 2 增强：Few-shot 范例 + @JsonPropertyDescription 字段描述 + 后校验兜底
 - 后续：[[Apache Tika 文档解析]] —— 文档文本抽取 → 结构化提取，形成完整接入链路
