@@ -47,6 +47,13 @@
 - Q5 纠偏：面试时最弱的回答是「我调过 API，能返回结果」—— 缺少设计思考、工程化、量化。强回答要包含具体项目 + 设计决策 + 技术难点 + 解决方案
 - 关键认知：多步调用链每步用 `.chatClientResponse()` 获取 Usage，三步累加得链路总成本。三步互不依赖可并行化（CompletableFuture），串行版更易调试。`@WebMvcTest` + `@MockitoBean` 不加载真实 ChatClient，无需 API Key
 
+## Day 7：周总结 + 复盘 ✅
+- 本周 6 天全景回顾：8 个 chat 端点 + 24/24 测试全绿 + 61 篇笔记
+- 模拟面试 6 题：ChatClient 集成方式 / `.content()` vs `.chatClientResponse()` / SSE 底层变化 / 多轮记忆原理 / 三层防护 / 串行 vs 并行权衡
+- 综合自评 **87 分**，薄弱点：SSE/WebFlux 底层原理、面试 STAR 话术包装、并行编排实战
+- Week 3 目标全部达成：LLM 变成后端的"普通依赖"，所有里程碑 ✅
+- 面试准备：本周 6 天累计覆盖 10+ 道面试题，从 API 使用 → 设计决策 → 工程化权衡形成完整回答链
+
 ## 本周里程碑（目标）
 - [x] `POST /api/chat` 同步端点跑通（Day 1 代码完成）
 - [x] System 角色 + PromptTemplate 端点跑通（Day 2 — 翻译/摘要/Slug 三个新端点）
@@ -55,6 +62,19 @@
 - [x] 超时重试 + Token 成本（Day 5 — 三层防护）
 - [x] `mvn test` 全绿 24/24（Day 6 新增 12 个 ChatController 测试）
 - [x] Swagger UI 可测试 chat 端点（Day 6 完成 ✅ — 8 个端点全部可测试）
+
+## Week 3 成绩单
+
+| Day | 主题 | 自测 | 核心产出 |
+|---|---|---|---|
+| D1 | Spring AI 起步 | 73 | ChatService + ChatController 基础骨架 |
+| D2 | System 角色 + PromptTemplate | 100 | 翻译/摘要/Slug 三个端点 |
+| D3 | SSE 流式对话 | 80 | stream() + Flux\<String\> + text/event-stream |
+| D4 | 多轮对话 | 100 | ChatMemory + Advisor，conversationId 会话隔离 |
+| D5 | 超时重试 + Token 成本 | 100 | 三层防护，chatClientResponse() 获取 Usage |
+| D6 | 综合实战 | 80 | 3 步 AI 调用链 + Token 聚合 + 12 个控制器测试 |
+| D7 | 周总结复盘 | — | 6 道模拟面试 + 综合自评 87 分 |
+| **平均** | | **88.8** | **8 端点 + 24 测试 + 7 个 ChatService 方法** |
 
 ## 导航
 - 上位：[[总图谱]]
