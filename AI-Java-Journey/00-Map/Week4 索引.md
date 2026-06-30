@@ -33,14 +33,31 @@
   - 测试从 32 → **41 个全部通过**
 - 关键认知：管线的每一段都是独立可替换的（Unix 管道思想）。API 设计上 parse 是原子能力，parse-and-extract 是组合能力。Swagger 的 `consumes = MULTIPART_FORM_DATA_VALUE` 让 UI 自动渲染文件选择器，不用离开浏览器就能验收完整链路。
 
+## Day 5：综合实战 —— 文档智能分析 API ✅
+- [[Spring AI Advisors 拦截链]] —— Advisor 是 ChatClient 的"中间件"，责任链模式，SimpleLoggerAdvisor 在 DEBUG 日志输出完整 request/response
+- [[文档智能分析综合实战]] —— Week 4 收网端点 `POST /api/documents/analyze`，四段管线：Tika 解析 → 文本统计（程序算）→ AI 元数据提取 → AI 关键句提炼（带 Advisor 观测）
+- 代码改动：
+  - **新增 `DocumentAnalysisResponse.java`**（综合响应 DTO：metadata + statistics + keySentences + readingTime）
+  - **新增 `TextStatistics.java`**（文本统计 DTO：字符数/词数/句子数/段落数/阅读时间）
+  - **新增 `DocumentAnalysisService.java`**（analyze 核心 + computeStatistics 纯计算 + extractKeySentences 带 Advisor）
+  - `DocumentParseService` 新增 `ParseResult` record + `parseWithMetadata()` 方法
+  - `DocumentController` 新增 `POST /api/documents/analyze`（第 18 个端点）
+  - **新增 `DocumentAnalysisServiceTest`**（6 个测试，覆盖文本统计各场景）
+  - `DocumentControllerTest` 新增 2 个 `/analyze` 测试
+  - 测试从 41 → **49 个全部通过**
+- 关键认知：
+  - **成本分界线**：能程序算的绝不调 AI（computeStatistics 零 Token），该花的不省（关键句提炼需要语义理解）
+  - Advisor 挂载是 **per-request** 的，通过 `.advisors(a -> a.advisors(...))` 只在当次调用生效
+  - 三层可观测：SimpleLoggerAdvisor（日志）→ 自定义 MetricsAdvisor（指标）→ Micrometer Observation（链路）
+
 ## 本周里程碑（目标）
 - [x] `BeanOutputConverter` 端点跑通，LLM 返回结构化 Bean（Day 1 ✅）
 - [x] Few-shot + @JsonPropertyDescription + 后校验五层防跑偏（Day 2 ✅）
 - [x] Tika 能解析 PDF/Word/Markdown 三种格式（Day 3 ✅）
-- [ ] 上传文档 → 解析 → AI 提取结构化信息完整链路 ✅（Day 4 端到端闭环 + Swagger 可测试）
-- [x] `mvn test` 全绿 ✅（41/41）
+- [x] 上传文档 → 解析 → AI 提取结构化信息完整链路 ✅（Day 4 闭环 + Day 5 增强分析）
+- [x] `mvn test` 全绿 ✅（49/49）
 - [x] Swagger UI 可测试文档上传端点 ✅（Day 4 完善 @ApiResponse + MultipartFile 配置）
-- [x] 本周新增 ≥4 篇 Obsidian 笔记 ✅（新增：Apache Tika、结构化抽取完整链路、Swagger 文件上传）
+- [x] 本周新增 ≥4 篇 Obsidian 笔记 ✅（6 篇：Apache Tika、结构化抽取完整链路、Swagger 文件上传、Spring AI Advisors、文档智能分析综合实战）
 
 ## 导航
 - 上位：[[总图谱]]

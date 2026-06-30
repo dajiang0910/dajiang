@@ -80,3 +80,4 @@ public class HelloController {
 - Week 4 Day 2 增强提取：`POST /api/extract/metadata/v2`（[[Prompt 工程进阶（Few-shot + Schema 约束）]]）—— Few-shot 范例 + @JsonPropertyDescription + 后校验，五层防跑偏
 - Week 4 Day 3 文档解析：`POST /api/documents/parse` + `POST /api/documents/parse-and-extract`（[[Apache Tika 文档解析]]）—— 上传文件 → Tika 解析 → （可选）AI 提取，知识库接入层完整链路
 - Week 4 Day 4 端到端闭环：完善 DocumentController 工程化（文件大小限制 + @ApiResponse + GlobalExceptionHandler 413）（[[结构化抽取完整链路]]、[[Swagger 文件上传与文档测试]]）
+- Week 4 Day 5 综合实战：`POST /api/documents/analyze`（[[文档智能分析综合实战]]）—— 上传文档 → Tika 解析 → 文本统计 + AI 元数据 + AI 关键句，首次引入 [[Spring AI Advisors 拦截链|SimpleLoggerAdvisor]] 做 LLM 调用观测
