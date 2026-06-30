@@ -50,16 +50,41 @@
   - Advisor 挂载是 **per-request** 的，通过 `.advisors(a -> a.advisors(...))` 只在当次调用生效
   - 三层可观测：SimpleLoggerAdvisor（日志）→ 自定义 MetricsAdvisor（指标）→ Micrometer Observation（链路）
 
+## Day 6：周末整合 —— 全链路复盘 + 错题攻坚 + 自定义 Advisor 实战 ✅
+- [[MetricsAdvisor 自定义指标采集]] —— 自定义 CallAdvisor，采集 LLM 调用耗时（Timer）+ Token 用量（Counter）到 Micrometer，从 SimpleLoggerAdvisor 的"调试工具"升级到"生产级可观测"
+- [[ApiResponse 类名冲突（Java import 限制）]] —— Day 4 Q3 盲区沉淀为踩坑笔记：Java 没有 `import...as`，用完全限定名 or DTO 改名
+- 代码改动：
+  - **新增 `advisor/MetricsAdvisor.java`**（自定义 CallAdvisor，161 行）
+  - **新增 `advisor/MetricsAdvisorTest.java`**（7 个测试，覆盖耗时/Token/null 防御/累加）
+  - 测试从 49 → **56 个全部通过**
+- 关键认知：
+  - **Advisor 是 per-request 挂载，不是全局切面**——这是 Day 6 自测 Q1 最危险的误解，面试说错直接扣大分
+  - **可观测三层**：SimpleLoggerAdvisor（日志/调试）→ MetricsAdvisor（指标/告警）→ Micrometer Observation（链路/分布式追踪）
+  - **Timer vs Counter 选型**：耗时用 Timer（自动算 P95），Token 用量用 Counter（单调递增累计值）
+  - **防御性编程**：指标采集用 try-catch 包裹，失败不影响业务调用
+- 自测 **73 分**（Q1=12 Q2=13 Q3=14 Q4=16 Q5=18），Week 4 成绩触底回升
+
 ## 本周里程碑（目标）
 - [x] `BeanOutputConverter` 端点跑通，LLM 返回结构化 Bean（Day 1 ✅）
 - [x] Few-shot + @JsonPropertyDescription + 后校验五层防跑偏（Day 2 ✅）
 - [x] Tika 能解析 PDF/Word/Markdown 三种格式（Day 3 ✅）
 - [x] 上传文档 → 解析 → AI 提取结构化信息完整链路 ✅（Day 4 闭环 + Day 5 增强分析）
-- [x] `mvn test` 全绿 ✅（49/49）
+- [x] `mvn test` 全绿 ✅（56/56）
 - [x] Swagger UI 可测试文档上传端点 ✅（Day 4 完善 @ApiResponse + MultipartFile 配置）
-- [x] 本周新增 ≥4 篇 Obsidian 笔记 ✅（6 篇：Apache Tika、结构化抽取完整链路、Swagger 文件上传、Spring AI Advisors、文档智能分析综合实战）
+- [x] 本周新增 ≥4 篇 Obsidian 笔记 ✅（8 篇：Apache Tika、结构化抽取完整链路、Swagger 文件上传、Spring AI Advisors、文档智能分析综合实战、MetricsAdvisor 自定义指标采集、ApiResponse 类名冲突）
+- [x] Day 6 自定义 MetricsAdvisor ✅（7 个测试，耗时 + Token 指标采集）
 
 ## 导航
 - 上位：[[总图谱]]
 - 上一周：[[Week3 索引]]
 - 下一周：Week5 索引（待建）
+
+## Week 4 自测成绩趋势
+```
+Day 1: 92 ████████████████████░  BeanOutputConverter 入门
+Day 2: 83 ████████████████░░░░  Prompt 工程进阶
+Day 3: 76 ███████████████░░░░░  Apache Tika 文档解析
+Day 4: 59 ███████████░░░░░░░░░  结构化抽取实战（最低谷）
+Day 5: 56 ███████████░░░░░░░░░  综合实战（最低谷）
+Day 6: 73 ██████████████░░░░░░  周末整合（触底回升）
+```
