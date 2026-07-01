@@ -1,6 +1,6 @@
 # Week 5 索引
 
-> **RAG v1：知识库问答最小闭环**。本周目标：打通 RAG 最小闭环——把 Week 4 解析出的文档灌入向量库，用户用自然语言提问，系统返回带原文引用来源的答案。**🔄 进行中（Day 1 ✅，Day 2 待开始）。**
+> **RAG v1：知识库问答最小闭环**。本周目标：打通 RAG 最小闭环——把 Week 4 解析出的文档灌入向量库，用户用自然语言提问，系统返回带原文引用来源的答案。**🔄 进行中（Day 1 ✅，Day 2 ✅，Day 3 待开始）。**
 
 ## Day 1：Embedding 直觉 + EmbeddingModel API ✅
 - [[Embedding 向量化]] —— 语义坐标、余弦相似度、EmbeddingModel API
@@ -9,10 +9,13 @@
 - 🔴 盲区：`embed()` vs `call(EmbeddingRequest)` —— 不是"单个 vs 批量"，而是"便捷 vs 完整控制（带 EmbeddingOptions）"
 - 关键认知：Embedding = 把文本变成高维空间里的坐标，语义相近 → 坐标接近 → 余弦相似度高
 
-## Day 2：向量库起步 —— Redis Stack + VectorStore 抽象
-- [[Redis Stack 向量存储]] —— Docker 部署、VectorStore 抽象、RedisVectorStore 配置
-- 代码：`docker-compose.yml` + `VectorStoreConfig` + 单文档灌库验证
-- 关键认知：VectorStore = 向量数据库的 JDBC，一行 `add()` 入库、一行 `similaritySearch()` 检索
+## Day 2：向量库起步 —— Redis Stack + VectorStore 抽象 ✅
+- [[Redis Stack 向量存储]] —— Docker 部署、VectorStore 抽象（= 向量数据库的 JDBC）、HNSW 索引算法、RedisVectorStore 自动配置
+- 代码：`docker-compose.yml` + Maven 3 个新依赖 + `VectorStoreService`（ingest/search/delete）+ `VectorController`（POST /api/vector/ingest + /api/vector/search）+ `SimpleVectorStoreFallbackConfig`（mock 降级）
+- 自测 **90 分**（Q1=18 Q2=16 Q3=19 Q4=18 Q5=19）
+- 🔴 盲区：HNSW 参数（M/efConstruction/efRuntime）面试追问 + 端口冲突排查命令 `netstat -ano | findstr`
+- 🐛 踩坑：Windows 原生 Redis 抢占 6379 端口 → Docker Redis Stack 连不上 → `taskkill` 解决
+- 关键认知：VectorStore 接口 = 向量版 JDBC，换向量库只改 Maven 依赖 + 配置，业务代码一行不动
 
 ## Day 3：文档切分策略 + 灌库管线
 - [[文档切分策略（Chunking）]] —— TokenTextSplitter、chunk size/overlap 取舍
