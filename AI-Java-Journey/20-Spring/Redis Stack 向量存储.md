@@ -217,4 +217,5 @@ Docker Desktop on Windows 的端口转发层有时会导致 AUTH 命令发送异
 - 应用：[[相似度检索]]（Day 4 —— 从 Redis Stack 搜出来）
 - 支撑：[[QuestionAnswerAdvisor RAG 问答]]（Day 5 —— Advisor 自动检索）
 - 降级：SimpleVectorStore（内存实现，Docker 不可用时的逃生舱）
+- 🆕 灌库管线：[[文档切分策略（Chunking）]]（Day 3 —— parse→chunk→ingest 三步管线）
 - 周索引：[[Week5 索引]]
