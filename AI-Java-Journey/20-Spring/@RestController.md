@@ -83,3 +83,4 @@ public class HelloController {
 - Week 4 Day 5 综合实战：`POST /api/documents/analyze`（[[文档智能分析综合实战]]）—— 上传文档 → Tika 解析 → 文本统计 + AI 元数据 + AI 关键句，首次引入 [[Spring AI Advisors 拦截链|SimpleLoggerAdvisor]] 做 LLM 调用观测
 - Week 4 Day 6 周末整合：[[MetricsAdvisor 自定义指标采集]]—— 自定义 CallAdvisor，采集 LLM 调用耗时 + Token 用量到 Micrometer，从调试工具升级到生产级可观测
 - Week 4 完成：[[Week4 周总结]] —— 18 端点、56 测试、71 笔记、B+，知识库接入层完工
+- Week 5 Day 1 embedding 端点：`POST /api/embed/similarity` + `POST /api/embed/peek`（[[Embedding 向量化]]）—— EmbeddingModel API + 余弦相似度，RAG 检索层的数学基础

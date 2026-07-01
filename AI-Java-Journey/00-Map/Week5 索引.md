@@ -1,11 +1,13 @@
 # Week 5 索引
 
-> **RAG v1：知识库问答最小闭环**。本周目标：打通 RAG 最小闭环——把 Week 4 解析出的文档灌入向量库，用户用自然语言提问，系统返回带原文引用来源的答案。**🔄 进行中（Day 1 待开始）。**
+> **RAG v1：知识库问答最小闭环**。本周目标：打通 RAG 最小闭环——把 Week 4 解析出的文档灌入向量库，用户用自然语言提问，系统返回带原文引用来源的答案。**🔄 进行中（Day 1 ✅，Day 2 待开始）。**
 
-## Day 1：Embedding 直觉 + EmbeddingModel API
+## Day 1：Embedding 直觉 + EmbeddingModel API ✅
 - [[Embedding 向量化]] —— 语义坐标、余弦相似度、EmbeddingModel API
-- 代码：验证 `EmbeddingModel.embed()` 调用、两个文本相似度对比
-- 关键认知：Embedding = 把文本变成高维空间里的坐标，语义相近 → 坐标接近
+- 代码：`EmbeddingService`（embed + cosineSimilarity）+ `EmbeddingController`（/peek + /similarity）+ `EmbeddingServiceTest`（3 个测试）
+- 自测 **81 分**（Q1=18 Q2=15 Q3=23 Q4=25）
+- 🔴 盲区：`embed()` vs `call(EmbeddingRequest)` —— 不是"单个 vs 批量"，而是"便捷 vs 完整控制（带 EmbeddingOptions）"
+- 关键认知：Embedding = 把文本变成高维空间里的坐标，语义相近 → 坐标接近 → 余弦相似度高
 
 ## Day 2：向量库起步 —— Redis Stack + VectorStore 抽象
 - [[Redis Stack 向量存储]] —— Docker 部署、VectorStore 抽象、RedisVectorStore 配置
