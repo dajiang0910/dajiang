@@ -1,6 +1,6 @@
 # Week 5 索引
 
-> **RAG v1：知识库问答最小闭环**。打通 RAG 最小闭环——把文档灌入向量库，用户自然语言提问，系统返回带原文引用来源的答案。**✅ 全部完成（Day 1-6 ✅，Day 7 周总结待完成）。**
+> **RAG v1：知识库问答最小闭环**。打通 RAG 最小闭环——把文档灌入向量库，用户自然语言提问，系统返回带原文引用来源的答案。**✅ 全部完成（Day 1-7 ✅）。**
 
 ## Day 1：Embedding 直觉 + EmbeddingModel API ✅
 - [[Embedding 向量化]] —— 语义坐标、余弦相似度、EmbeddingModel API
@@ -56,8 +56,11 @@
 - 测试结果：85 测试总量，新增 14 个 ✅，0 失败（4 个预先存在的 ApplicationContext 错误除外）
 - [[RAG 检索质量评估]] —— precision@3 综合 73.3%，Q4 "商品坏了怎么办" query-doc gap 分析
 
-## Day 7：周总结
-- [[Week5 周总结]] —— 成果盘点、成绩趋势、盲区回顾、Week 6 预告
+## Day 7：周总结 ✅
+- [[Week5 周总结]] —— 成果盘点（11 端点 / 7 Service / 5 Controller / 85 测试）、成绩趋势（81→90→81→69→90，平均 82.2，D4→D5 反弹 +21）、15 个盲区回顾（12 已吃透 / 3 半懂）、Week 6 预告（混合检索 + rerank + Milvus）
+- 全量测试验证：`mvn test` 85 总量 / 0 失败 / 4 预存错误（Redis + API Key）
+- Git 状态：working tree clean，所有代码已提交
+- 盲区分类：80% 已吃透，⚠️ HNSW 参数 + metadata/filterExpression 面试危险区
 
 ## 本周里程碑（目标）
 - [x] Docker Redis Stack 可启动，`RedisVectorStore` 连接正常
@@ -74,7 +77,7 @@
 - **RAG**：`QuestionAnswerAdvisor` 自动检索 + 增强 + 生成
 
 ## 本周应沉淀的知识点
-- `[[Embedding 向量化]]` · `[[Redis Stack 向量存储]]` · `[[文档切分策略（Chunking）]]` · `[[相似度检索]]` · `[[QuestionAnswerAdvisor RAG 问答]]` · `[[RAG 原理与最小闭环]]` · `[[Docker Compose 开发环境]]` · `[[RAG 检索质量评估]]`
+- `[[Embedding 向量化]]` · `[[Redis Stack 向量存储]]` · `[[文档切分策略（Chunking）]]` · `[[相似度检索]]` · `[[QuestionAnswerAdvisor RAG 问答]]` · `[[RAG 原理与最小闭环]]` · `[[Docker Compose 开发环境]]` · `[[RAG 检索质量评估]]` · `[[Week5 周总结]]`
 
 ## 成绩趋势
 ```
@@ -84,9 +87,14 @@ Day 3: 81 分 (B+)  ████████████████░░░░
 Day 4: 69 分 (C+)  ██████████████░░░░░░  ↓ -12 ⚠️ 答案太简略
 Day 5: 90 分 (A-)  ██████████████████░░  ↑ +21 🚀 反弹，RAG 认知链路打通
 Day 6: —— 分 (整合日，无自测)  ░░░░░░░░░░░░░░░░░░░░  🔧 工程整合
+Day 7: —— 分 (周总结日)  ░░░░░░░░░░░░░░░░░░░░  📊 复盘+盘点
+
+平均分: 82.2（不含 D6/D7）  评级: B+/A-
+趋势: W 形波动，D4 触底后 D5 强劲反弹 +21 分
 ```
 
 ## 导航
 - 上位：[[总图谱]]
 - 上一周：[[Week4 索引]]
 - 下一周：Week6 索引（待建）
+- 周总结：[[Week5 周总结]]
