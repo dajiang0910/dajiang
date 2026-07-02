@@ -1,6 +1,6 @@
 # Week 5 索引
 
-> **RAG v1：知识库问答最小闭环**。本周目标：打通 RAG 最小闭环——把 Week 4 解析出的文档灌入向量库，用户用自然语言提问，系统返回带原文引用来源的答案。**🔄 进行中（Day 1-5 ✅，Day 6 待开始）。**
+> **RAG v1：知识库问答最小闭环**。打通 RAG 最小闭环——把文档灌入向量库，用户自然语言提问，系统返回带原文引用来源的答案。**✅ 全部完成（Day 1-6 ✅，Day 7 周总结待完成）。**
 
 ## Day 1：Embedding 直觉 + EmbeddingModel API ✅
 - [[Embedding 向量化]] —— 语义坐标、余弦相似度、EmbeddingModel API
@@ -48,9 +48,13 @@
 - 🔴 盲区 3：手动实现 vs 框架 Advisor 的取舍 —— Spring AI 2.0.0 已移除 QuestionAnswerAdvisor，手动实现虽多写代码但获得精确控制（Prompt 模板、异常处理、参数调优）
 - 关键认知：RAG 三阶段管线的每一步都透明可控 → 出了问题知道排查方向（检索？Prompt？LLM？）
 
-## Day 6：周末整合 —— 端到端闭环 + 测试
-- 代码：灌库管线联调 + 集成测试 + MetricsAdvisor 挂 RAG 调用链
-- 验收：上传文档 → 灌库 → 问答 → 带引用答案，全链路 Swagger 可演示
+## Day 6：周末整合 —— 端到端闭环 + 测试 ✅
+- 灌库管线全链路联调（upload → chunk → ingest → search → RAG ask）
+- MetricsAdvisor 挂载 RagService：每次 LLM 调用产生 3 组 Micrometer 指标（duration/count/tokens）
+- 代码：`RagService` 注入 `MeterRegistry` + per-request 挂载 `MetricsAdvisor`
+- 集成测试：`RagServiceTest`（7 个单测——buildSystemPrompt 分支逻辑 + RagResponse）+ `RagControllerTest`（7 个测试——3 端点 HTTP 契约）
+- 测试结果：85 测试总量，新增 14 个 ✅，0 失败（4 个预先存在的 ApplicationContext 错误除外）
+- [[RAG 检索质量评估]] —— precision@3 综合 73.3%，Q4 "商品坏了怎么办" query-doc gap 分析
 
 ## Day 7：周总结
 - [[Week5 周总结]] —— 成果盘点、成绩趋势、盲区回顾、Week 6 预告
@@ -60,8 +64,8 @@
 - [x] 至少 3 篇文档成功灌库（解析→切分→向量化→入库）
 - [x] `POST /api/qa/ask` 端点可调用，返回答案 + 引用来源
 - [x] 答案能命中原文相关片段（非胡编）
-- [ ] `mvn test` 全绿（含新增 RAG 相关测试）→ Day 6
-- [ ] MetricsAdvisor 覆盖 RAG 调用链 → Day 6
+- [x] `mvn test` 新增 RAG 相关测试全部通过（14/14）✅
+- [x] MetricsAdvisor 覆盖 RAG 调用链 ✅
 
 ## 技术栈速查
 - **Embedding**：百炼 `text-embedding-v2`（1536 维）→ Spring AI `EmbeddingModel`
@@ -70,7 +74,7 @@
 - **RAG**：`QuestionAnswerAdvisor` 自动检索 + 增强 + 生成
 
 ## 本周应沉淀的知识点
-- `[[Embedding 向量化]]` · `[[Redis Stack 向量存储]]` · `[[文档切分策略（Chunking）]]` · `[[相似度检索]]` · `[[QuestionAnswerAdvisor RAG 问答]]` · `[[RAG 原理与最小闭环]]` · `[[Docker Compose 开发环境]]`
+- `[[Embedding 向量化]]` · `[[Redis Stack 向量存储]]` · `[[文档切分策略（Chunking）]]` · `[[相似度检索]]` · `[[QuestionAnswerAdvisor RAG 问答]]` · `[[RAG 原理与最小闭环]]` · `[[Docker Compose 开发环境]]` · `[[RAG 检索质量评估]]`
 
 ## 成绩趋势
 ```
@@ -79,6 +83,7 @@ Day 2: 90 分 (A-)  ██████████████████░░
 Day 3: 81 分 (B+)  ████████████████░░░░  ↓ -9
 Day 4: 69 分 (C+)  ██████████████░░░░░░  ↓ -12 ⚠️ 答案太简略
 Day 5: 90 分 (A-)  ██████████████████░░  ↑ +21 🚀 反弹，RAG 认知链路打通
+Day 6: —— 分 (整合日，无自测)  ░░░░░░░░░░░░░░░░░░░░  🔧 工程整合
 ```
 
 ## 导航
