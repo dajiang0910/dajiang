@@ -1,6 +1,6 @@
 # Week 5 索引
 
-> **RAG v1：知识库问答最小闭环**。本周目标：打通 RAG 最小闭环——把 Week 4 解析出的文档灌入向量库，用户用自然语言提问，系统返回带原文引用来源的答案。**🔄 进行中（Day 1 ✅，Day 2 ✅，Day 3 ✅，Day 4 ✅，Day 5 待开始）。**
+> **RAG v1：知识库问答最小闭环**。本周目标：打通 RAG 最小闭环——把 Week 4 解析出的文档灌入向量库，用户用自然语言提问，系统返回带原文引用来源的答案。**🔄 进行中（Day 1-5 ✅，Day 6 待开始）。**
 
 ## Day 1：Embedding 直觉 + EmbeddingModel API ✅
 - [[Embedding 向量化]] —— 语义坐标、余弦相似度、EmbeddingModel API
@@ -38,10 +38,15 @@
 - 关键发现：简单查询（Q1-Q3, Q5）precision 100%；复杂查询 Q4"商品坏了怎么办"因 query-doc gap 召回失败 → vocabulary gap 是 RAG 检索第一杀手
 - 关键认知：检索质量 = RAG 天花板 —— 5 查询 × top-3 手工标注 → precision@3 量化报告，不凭感觉调参
 
-## Day 5：QuestionAnswerAdvisor + RAG 完整链路
-- [[QuestionAnswerAdvisor RAG 问答]] —— 检索→增强→生成三阶段
-- 代码：`POST /api/qa/ask` 端点（QaController + QaService + QuestionAnswerAdvisor）
-- 关键认知：Advisor 在 `prompt().call()` 前自动检索 + 拼上下文，答案附引用来源
+## Day 5：QuestionAnswerAdvisor + RAG 完整链路 ✅
+- [[QuestionAnswerAdvisor RAG 问答]] —— 手动实现 RAG 三阶段管线（检索→增强→生成），System Prompt 安全防线，空检索兜底策略
+- [[RAG 原理与最小闭环]] —— Retrieve→Augment→Generate 原理、检索天花板理论、安全失败原则
+- 代码：`RagService`（编排三阶段）+ `RagController`（POST /api/qa/ask + /compare + /ask-without-rag）
+- 自测 **90 分**（Q1=18 Q2=22 Q3=23 Q4=27）
+- 🔴 盲区 1：System Prompt vs User Prompt 的安全差异 —— 知识片段必须放 System Prompt，Transformer 注意力机制中系统指令优先级更高，防提示词注入
+- 🔴 盲区 2：空检索兜底的工程决策 —— 企业知识库场景优先"安全失败"（告知不知），不降级纯 LLM（破坏可信性）
+- 🔴 盲区 3：手动实现 vs 框架 Advisor 的取舍 —— Spring AI 2.0.0 已移除 QuestionAnswerAdvisor，手动实现虽多写代码但获得精确控制（Prompt 模板、异常处理、参数调优）
+- 关键认知：RAG 三阶段管线的每一步都透明可控 → 出了问题知道排查方向（检索？Prompt？LLM？）
 
 ## Day 6：周末整合 —— 端到端闭环 + 测试
 - 代码：灌库管线联调 + 集成测试 + MetricsAdvisor 挂 RAG 调用链
@@ -52,11 +57,11 @@
 
 ## 本周里程碑（目标）
 - [x] Docker Redis Stack 可启动，`RedisVectorStore` 连接正常
-- [ ] 至少 3 篇文档成功灌库（解析→切分→向量化→入库）
-- [ ] `POST /api/qa/ask` 端点可调用，返回答案 + 引用来源
-- [ ] 答案能命中原文相关片段（非胡编）
-- [ ] `mvn test` 全绿（含新增 RAG 相关测试）
-- [ ] MetricsAdvisor 覆盖 RAG 调用链
+- [x] 至少 3 篇文档成功灌库（解析→切分→向量化→入库）
+- [x] `POST /api/qa/ask` 端点可调用，返回答案 + 引用来源
+- [x] 答案能命中原文相关片段（非胡编）
+- [ ] `mvn test` 全绿（含新增 RAG 相关测试）→ Day 6
+- [ ] MetricsAdvisor 覆盖 RAG 调用链 → Day 6
 
 ## 技术栈速查
 - **Embedding**：百炼 `text-embedding-v2`（1536 维）→ Spring AI `EmbeddingModel`
@@ -73,6 +78,7 @@ Day 1: 81 分 (B+)  ████████████████░░░░
 Day 2: 90 分 (A-)  ██████████████████░░  ↑ +9
 Day 3: 81 分 (B+)  ████████████████░░░░  ↓ -9
 Day 4: 69 分 (C+)  ██████████████░░░░░░  ↓ -12 ⚠️ 答案太简略
+Day 5: 90 分 (A-)  ██████████████████░░  ↑ +21 🚀 反弹，RAG 认知链路打通
 ```
 
 ## 导航
