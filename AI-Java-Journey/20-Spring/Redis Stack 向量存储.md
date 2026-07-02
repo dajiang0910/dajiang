@@ -218,4 +218,7 @@ Docker Desktop on Windows 的端口转发层有时会导致 AUTH 命令发送异
 - 支撑：[[QuestionAnswerAdvisor RAG 问答]]（Day 5 —— Advisor 自动检索）
 - 降级：SimpleVectorStore（内存实现，Docker 不可用时的逃生舱）
 - 🆕 灌库管线：[[文档切分策略（Chunking）]]（Day 3 —— parse→chunk→ingest 三步管线）
+- 🐛 filterExpression 踩坑：[[相似度检索]]（Day 4 —— metadata 存为 JSON 字符串，RediSearch FILTER 无法穿透，需后置过滤）
+- 🐛 FT.INDEX 不自动创建：[[相似度检索]]（Day 4 —— `initialize-schema=true` 在 Spring Boot 4.x 不生效，需 CommandLineRunner 手动建）
+- 🐛 metadata 检索时不返回：[[相似度检索]]（Day 4 —— 自定义 metadata 丢失，需内嵌到内容前缀）
 - 周索引：[[Week5 索引]]

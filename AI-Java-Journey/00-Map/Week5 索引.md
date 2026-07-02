@@ -1,6 +1,6 @@
 # Week 5 索引
 
-> **RAG v1：知识库问答最小闭环**。本周目标：打通 RAG 最小闭环——把 Week 4 解析出的文档灌入向量库，用户用自然语言提问，系统返回带原文引用来源的答案。**🔄 进行中（Day 1 ✅，Day 2 ✅，Day 3 ✅，Day 4 待开始）。**
+> **RAG v1：知识库问答最小闭环**。本周目标：打通 RAG 最小闭环——把 Week 4 解析出的文档灌入向量库，用户用自然语言提问，系统返回带原文引用来源的答案。**🔄 进行中（Day 1 ✅，Day 2 ✅，Day 3 ✅，Day 4 ✅，Day 5 待开始）。**
 
 ## Day 1：Embedding 直觉 + EmbeddingModel API ✅
 - [[Embedding 向量化]] —— 语义坐标、余弦相似度、EmbeddingModel API
@@ -27,10 +27,16 @@
 - 🐛 踩坑：Spring AI 2.0.0 `TokenTextSplitter` 无原生 overlap，需手写滑动窗口
 - 关键认知：灌库管线 = parse（Tika）→ chunk（TokenTextSplitter）→ ingest（VectorStore.add 内部自动向量化），业务代码不显式调 Embedding
 
-## Day 4：相似检索 + 检索质量验证
-- [[相似度检索]] —— similaritySearch()、top-K、minScore 阈值
-- 代码：`SearchService` + 手工评估检索结果
-- 关键认知：检索质量决定 RAG 上限——搜不到对的片段，LLM 再强也白搭
+## Day 4：相似检索 + 检索质量手工评估 ✅
+- [[相似度检索]] —— top-K 调参、minScore 阈值、precision@K 手工评估、filterExpression 坑
+- 代码：`SearchService`（检索 + 格式化 + 后置过滤）+ `SearchController`（POST /api/search + /api/search/filtered）+ `RedisSchemaInitializer`（启动自动建 FT.INDEX）
+- 自测 **69 分**（Q1=15 Q2=16 Q3=14 Q4=24）
+- 🔴 盲区 1：threshold 调参无法修复排序问题 —— 正确答案分数低于错误答案时，调阈值只能同时杀/放，需要混合检索+rerank（Week 6）
+- 🔴 盲区 2：filterExpression 在 RedisVectorStore 中不生效 —— metadata 序列化为 JSON 字符串而非独立 hash field，需内容前缀后置过滤
+- 🔴 盲区 3：metadata 检索时不返回 —— `similaritySearch` 只返回 distance/vector_score，自定义 metadata 丢失，需内嵌到内容前缀
+- 🐛 踩坑：Spring AI 2.0.0 `initialize-schema=true` 在 Spring Boot 4.x 下不触发 FT.CREATE → `RedisSchemaInitializer` 手动建索引
+- 关键发现：简单查询（Q1-Q3, Q5）precision 100%；复杂查询 Q4"商品坏了怎么办"因 query-doc gap 召回失败 → vocabulary gap 是 RAG 检索第一杀手
+- 关键认知：检索质量 = RAG 天花板 —— 5 查询 × top-3 手工标注 → precision@3 量化报告，不凭感觉调参
 
 ## Day 5：QuestionAnswerAdvisor + RAG 完整链路
 - [[QuestionAnswerAdvisor RAG 问答]] —— 检索→增强→生成三阶段
@@ -66,6 +72,7 @@
 Day 1: 81 分 (B+)  ████████████████░░░░
 Day 2: 90 分 (A-)  ██████████████████░░  ↑ +9
 Day 3: 81 分 (B+)  ████████████████░░░░  ↓ -9
+Day 4: 69 分 (C+)  ██████████████░░░░░░  ↓ -12 ⚠️ 答案太简略
 ```
 
 ## 导航
